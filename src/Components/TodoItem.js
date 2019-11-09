@@ -20,12 +20,18 @@ export class TodoItem extends Component {
     // }
   };
 
+  markComplete = (e) => {
+    console.log(this.props)
+  }
+
   render() {
     return (
       // inline style style={{backgroundColor: "#f4f4f4"}}
       // const style style={itemStyle}
       <div style={this.getStyle()}>
-        <p>{this.props.todo.title}</p>
+        <p>
+          <input type="checkbox" onChange={this.props.markComplete} /> {' '}
+        {this.props.todo.title}</p>
       </div>
     );
   }
