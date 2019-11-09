@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Header from "./Components/layout/Header";
 import Todos from "./Components/Todos";
 
 import "./App.css";
@@ -38,6 +39,7 @@ class App extends Component {
 
   delTodo = id => {
     this.setState({
+      // the spread operator [...] is used to add an element to an existing array (The spread operator can be used to take an existing array and add another element to it while still preserving the original array)
       todos: [...this.state.todos.filter(todo => todo.id !== id)]
     });
   };
@@ -46,6 +48,7 @@ class App extends Component {
     console.log(this.state.todos);
     return (
       <div className="App">
+        <Header />
         <Todos
           todos={this.state.todos}
           markComplete={this.markComplete}
