@@ -19,7 +19,7 @@ class App extends Component {
       {
         id: 3, 
         title: 'Make flashcards',
-        completed: false
+        completed: true
       }
     ]
   }
@@ -27,7 +27,7 @@ class App extends Component {
     console.log(this.state.todos)
     return (
       <div className="App">
-        <Todos />
+        <Todos todos={this.state.todos} />
       </div>
     );
   }
