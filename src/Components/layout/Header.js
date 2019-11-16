@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { white } from "ansi-colors";
 
 function Header() {
   return (
@@ -19,7 +18,7 @@ const headerStyle = {
 }
 
 const linkStyle = {
-  color: 'white'
+  color: "white"
 }
 
 export default Header;

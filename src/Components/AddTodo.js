@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class AddTodo extends Component {
   state = {
     title: ""
   };
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
     this.props.addTodo(this.state.title);
-    this.setState({ title: '' })
-  }
-                                // title: e.target.value. using [e.target.name] would allow us to handle multiple form inputs without requiring multiple onChange functions
+    this.setState({ title: "" });
+  };
+  // title: e.target.value. using [e.target.name] would allow us to handle multiple form inputs without requiring multiple onChange functions
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
@@ -34,5 +35,10 @@ export class AddTodo extends Component {
     );
   }
 }
+
+// PropTypes
+AddTodo.propTypes = {
+  AddTodo: PropTypes.func.isRequired
+};
 
 export default AddTodo;
