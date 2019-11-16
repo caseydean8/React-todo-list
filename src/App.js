@@ -4,30 +4,21 @@ import Header from "./Components/layout/Header";
 import Todos from "./Components/Todos";
 import AddTodo from "./Components/AddTodo";
 import About from "./Components/pages/About";
-import uuid from "uuid";
+// import uuid from "uuid";
+import Axios from "axios";
 
 import "./App.css";
 
 class App extends Component {
   state = {
-    todos: [
-      {
-        id: uuid.v4(),
-        title: "Email recruiter",
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: "Message Chris",
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: "Make flashcards",
-        completed: true
-      }
-    ]
+    todos: []
   };
+
+  componentDidMount() {
+    Axios.get("http://jsonplaceholder.typicode.com/todos?_limit=10").then(res =>
+      this.setState({ todos: res.data })
+    );
+  }
 
   // Toggle complete
   markComplete = id => {
@@ -50,13 +41,11 @@ class App extends Component {
 
   // Add Todo
   addTodo = title => {
-    const newTodo = {
-      id: uuid.v4(),
+    Axios.post("http://jsonplaceholder.typicode.com/todos", {
       // in es6 below is equal to title: title
       title,
       completed: false
-    };
-    this.setState({ todos: [...this.state.todos, newTodo] });
+    }).then(res => this.setState({ todos: [...this.state.todos, res.data] }));
   };
 
   render() {
@@ -67,7 +56,8 @@ class App extends Component {
           <div className="container">
             <Header />
             <Route
-              exact path="/"
+              exact
+              path="/"
               render={props => (
                 <React.Fragment>
                   <AddTodo addTodo={this.addTodo} />
