@@ -33,10 +33,12 @@ class App extends Component {
   };
 
   delTodo = id => {
-    this.setState({
-      // the spread operator [...] is used to add an element to an existing array (The spread operator can be used to take an existing array and add another element to it while still preserving the original array)
-      todos: [...this.state.todos.filter(todo => todo.id !== id)]
-    });
+    Axios.delete(`http://jsonplaceholder.typicode.com/todos/${id}`).then(res =>
+      this.setState({
+        // the spread operator [...] is used to add an element to an existing array (The spread operator can be used to take an existing array and add another element to it while still preserving the original array)
+        todos: [...this.state.todos.filter(todo => todo.id !== id)]
+      })
+    );
   };
 
   // Add Todo
